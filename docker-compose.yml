@@ -5,9 +5,9 @@ services:
     image: openresty/openresty:alpine
     volumes:
       # Nginx files
-      - ./nginx/:/etc/nginx/:ro,cached
+      - ./nginx/:/etc/nginx/:ro
       # Web files
-      - ./web/:/var/www/web/:ro,cached
+      - ./web/:/var/www/web/:ro
     entrypoint: openresty -c /etc/nginx/nginx.conf
     ports:
       - "8080:8080"
@@ -21,7 +21,7 @@ services:
       context: .
       dockerfile: php.Dockerfile
     volumes:
-      - ./web/:/var/www/web/:ro,cached
+      - ./web/:/var/www/web/:ro
     expose:
       - "9000"
     networks:

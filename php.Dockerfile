@@ -41,7 +41,11 @@ RUN set -ex \
 		echo 'opcache.memory_consumption = 128'; \
 		echo 'opcache.max_accelerated_files = 1000'; \
 		echo; \
-	} | tee conf.d/opcache.conf
+	} | tee conf.d/opcache.conf \
+	# Allow more resources for php-fpm
+	&& sed -i '/^pm.max_children/c\pm.max_children = 10' php-fpm.d/www.conf \
+	&& sed -i '/^pm.min_spare_servers/c\pm.min_spare_servers = 2' php-fpm.d/www.conf \
+	&& sed -i '/^pm.max_spare_servers/c\pm.max_spare_servers = 4' php-fpm.d/www.conf
 
 EXPOSE ${PORT}
 CMD ["php-fpm7"]

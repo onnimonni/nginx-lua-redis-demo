@@ -6,7 +6,7 @@ There's the same implementation by:
 * nginx+php in port 8080
 * nginx+lua (openresty) in port 8081
 
-This demo was created for presentation in [Web Dev & Sausages event 11.5.2017](http://www.webdevandsausages.org/).
+This demo was created for a presentation in [Web Dev & Sausages @ Tampere Vincit - 11.5.2017](http://www.webdevandsausages.org/).
 
 ## License
 MIT
