@@ -16,7 +16,7 @@ test_php: reset
 	curl -X POST http://127.0.0.1:8080/test/ -d '{ "data": "12345" }'
 	curl -X GET http://127.0.0.1:8080/test/
 
-	siege --concurrent=200 --time=10s --benchmark http://localhost:8081/test/
+	siege --concurrent=200 --time=10s --benchmark http://localhost:8080/test/
 
 test_lua: reset
 	# Populate redis and warm up php+nginx
