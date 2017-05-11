@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  nginx:
+    image: openresty/openresty:alpine
+    volumes:
+      # Nginx files
+      - ./nginx/:/etc/nginx/:ro,cached
+      # Web files
+      - ./web/:/var/www/web/:ro,cached
+    entrypoint: openresty -c /etc/nginx/nginx.conf
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    networks:
+      - default
+
+  php:
+    image: php:fpm
+    build:
+      context: .
+      dockerfile: php.Dockerfile
+    volumes:
+      - ./web/:/var/www/web/:ro,cached
+    expose:
+      - "9000"
+    networks:
+      - default
+
+  redis:
+    image: redis:alpine
+    expose:
+      - "6379"
+    networks:
+      - default
+
+networks:
+  default:
